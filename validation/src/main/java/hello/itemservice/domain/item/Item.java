@@ -15,7 +15,7 @@ public class Item {
     @NotBlank
     private String itemName;
 
-    @NotBlank
+    @NotNull
     @Range(min = 1_000, max = 1_000_000)
     private Integer price;
 
