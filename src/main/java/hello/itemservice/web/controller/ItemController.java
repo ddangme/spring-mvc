@@ -1,9 +1,9 @@
-package hello.itemservice.web.validation;
+package hello.itemservice.web.controller;
 
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
-import hello.itemservice.web.validation.form.ItemSaveForm;
-import hello.itemservice.web.validation.form.ItemUpdateForm;
+import hello.itemservice.web.form.ItemSaveForm;
+import hello.itemservice.web.form.ItemUpdateForm;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -17,9 +17,9 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@RequestMapping("/validation/items")
+@RequestMapping("/items")
 @RequiredArgsConstructor
-public class ValidationItemController {
+public class ItemController {
 
     private final ItemRepository itemRepository;
 
@@ -27,20 +27,20 @@ public class ValidationItemController {
     public String items(Model model) {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
-        return "validation/items";
+        return "items/items";
     }
 
     @GetMapping("/{itemId}")
     public String item(@PathVariable long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
-        return "validation/item";
+        return "items/item";
     }
 
     @GetMapping("/add")
     public String addForm(Model model) {
         model.addAttribute("item", new Item());
-        return "validation/addForm";
+        return "items/addForm";
     }
 
     @PostMapping("/add")
@@ -57,7 +57,7 @@ public class ValidationItemController {
         //검증에 실패하면 다시 입력 폼으로
         if (bindingResult.hasErrors()) {
             log.info("errors={} ", bindingResult);
-            return "validation/addForm";
+            return "items/addForm";
         }
 
         //성공 로직
@@ -67,14 +67,14 @@ public class ValidationItemController {
         Item savedItem = itemRepository.save(item);
         redirectAttributes.addAttribute("itemId", savedItem.getId());
         redirectAttributes.addAttribute("status", true);
-        return "redirect:/validation/items/{itemId}";
+        return "redirect:/items/{itemId}";
     }
     
     @GetMapping("/{itemId}/edit")
     public String editForm(@PathVariable Long itemId, Model model) {
         Item item = itemRepository.findById(itemId);
         model.addAttribute("item", item);
-        return "validation/editForm";
+        return "items/editForm";
     }
 
     @PostMapping("/{itemId}/edit")
@@ -90,13 +90,13 @@ public class ValidationItemController {
 
         if (bindingResult.hasErrors()) {
             log.info("errors={}", bindingResult);
-            return "validation/editForm";
+            return "items/editForm";
         }
 
         Item itemParam = new Item(form.getItemName(), form.getPrice(), form.getQuantity());
 
         itemRepository.update(itemId, itemParam);
-        return "redirect:/validation/items/{itemId}";
+        return "redirect:/items/{itemId}";
     }
 
 }

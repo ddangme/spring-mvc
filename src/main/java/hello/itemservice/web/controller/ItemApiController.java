@@ -1,8 +1,8 @@
-package hello.itemservice.web.validation;
+package hello.itemservice.web.controller;
 
 import hello.itemservice.domain.item.Item;
 import hello.itemservice.domain.item.ItemRepository;
-import hello.itemservice.web.validation.form.ItemSaveForm;
+import hello.itemservice.web.form.ItemSaveForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
-@RequestMapping("/validation/api/items")
-public class ValidationItemApiController {
+@RequestMapping("/api/items")
+public class ItemApiController {
 
     ItemRepository itemRepository = new ItemRepository();
 
