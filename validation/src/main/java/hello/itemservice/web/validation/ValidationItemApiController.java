@@ -1,5 +1,7 @@
 package hello.itemservice.web.validation;
 
+import hello.itemservice.domain.item.Item;
+import hello.itemservice.domain.item.ItemRepository;
 import hello.itemservice.web.validation.form.ItemSaveForm;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.BindingResult;
@@ -14,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/validation/api/items")
 public class ValidationItemApiController {
 
+    ItemRepository itemRepository = new ItemRepository();
+
     @PostMapping("/add")
+
     public Object addItem(@RequestBody @Validated ItemSaveForm form, BindingResult bindingResult) {
         log.info("API 컨트롤러 호출");
 
@@ -24,6 +29,9 @@ public class ValidationItemApiController {
         }
 
         log.info("성공 로직 실행");
+        Item item = new Item(form.getItemName(), form.getPrice(), form.getQuantity());
+
+        Item savedItem = itemRepository.save(item);
         return form;
     }
 
