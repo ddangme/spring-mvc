@@ -13,3 +13,4 @@
 [ch04. 검증1 - Validation.md](notes%2Fmvc2%2Fch04.%20%EA%B2%80%EC%A6%9D1%20-%20Validation.md)  
 [ch05. 검증2- Bean Validation.md](notes%2Fmvc2%2Fch05.%20%EA%B2%80%EC%A6%9D2-%20Bean%20Validation.md)  
 [ch06~07. 로그인 처리.md](notes%2Fmvc2%2Fch06%7E07.%20%EB%A1%9C%EA%B7%B8%EC%9D%B8%20%EC%B2%98%EB%A6%AC.md)  
+[ch09. API 예외 처리.md](notes%2Fmvc2%2Fch09.%20API%20%EC%98%88%EC%99%B8%20%EC%B2%98%EB%A6%AC.md)
