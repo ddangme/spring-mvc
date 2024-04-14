@@ -1,4 +1,4 @@
-package hello.itemservice;
+package hello.itemservice.web.resolver;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import hello.itemservice.web.exception.UserException;
