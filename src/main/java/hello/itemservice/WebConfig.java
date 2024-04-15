@@ -7,6 +7,7 @@ import hello.itemservice.web.converter.StringToIntegerConverter;
 import hello.itemservice.web.converter.StringToIpPortConverter;
 import hello.itemservice.web.filter.LogFilter;
 import hello.itemservice.web.filter.LoginCheckFilter;
+import hello.itemservice.web.formatter.MyNumberFormatter;
 import hello.itemservice.web.interceptor.LogInterceptor;
 import hello.itemservice.web.interceptor.LoginCheckInterceptor;
 import hello.itemservice.web.resolver.MyHandlerExceptionResolver;
@@ -72,10 +73,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new StringToIntegerConverter());
-        registry.addConverter(new IntegerToStringConverter());
+//        registry.addConverter(new StringToIntegerConverter());
+//        registry.addConverter(new IntegerToStringConverter());
         registry.addConverter(new StringToIpPortConverter());
         registry.addConverter(new IpPortToStringConverter());
+
+        registry.addFormatter(new MyNumberFormatter());
     }
 
 }
