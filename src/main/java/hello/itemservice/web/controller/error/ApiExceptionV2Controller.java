@@ -1,4 +1,4 @@
-package hello.itemservice.web.controller;
+package hello.itemservice.web.controller.error;
 
 import hello.itemservice.web.exception.UserException;
 import lombok.AllArgsConstructor;
