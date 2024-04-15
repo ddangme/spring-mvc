@@ -1,6 +1,10 @@
 package hello.itemservice;
 
 import hello.itemservice.web.argumentresolver.LoginMemberArgumentResolver;
+import hello.itemservice.web.converter.IntegerToStringConverter;
+import hello.itemservice.web.converter.IpPortToStringConverter;
+import hello.itemservice.web.converter.StringToIntegerConverter;
+import hello.itemservice.web.converter.StringToIpPortConverter;
 import hello.itemservice.web.filter.LogFilter;
 import hello.itemservice.web.filter.LoginCheckFilter;
 import hello.itemservice.web.interceptor.LogInterceptor;
@@ -9,6 +13,7 @@ import hello.itemservice.web.resolver.MyHandlerExceptionResolver;
 import hello.itemservice.web.resolver.UserHandlerExceptionResolver;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
@@ -65,5 +70,12 @@ public class WebConfig implements WebMvcConfigurer {
         resolvers.add(new UserHandlerExceptionResolver());
     }
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+        registry.addConverter(new StringToIntegerConverter());
+        registry.addConverter(new IntegerToStringConverter());
+        registry.addConverter(new StringToIpPortConverter());
+        registry.addConverter(new IpPortToStringConverter());
+    }
 
 }
